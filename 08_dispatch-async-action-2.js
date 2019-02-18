@@ -19,6 +19,7 @@ var reducer = combineReducers({
         }
     }
 })
+
 var store_0 = createStore(reducer)
 
 var asyncSayActionCreator_1 = function (message) {
@@ -34,6 +35,7 @@ var asyncSayActionCreator_1 = function (message) {
 
 console.log("\n", 'Running our async action creator:', "\n")
 store_0.dispatch(asyncSayActionCreator_1('Hi'))
+console.log('after distpatch')
 
 // Output:
 //     ...

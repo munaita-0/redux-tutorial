@@ -70,6 +70,9 @@ class Home extends React.Component {
     this.props.dispatch(actionCreators.getTime(delay))
   }
   render () {
+    console.log('&&&&&&&f')
+    console.log(this.props)
+    console.log('&&&&&&&&')
 
     // Thanks to "connect", we're able to get specific selected data, through the props.
     var { frozen, time, reduxState } = this.props
@@ -107,6 +110,9 @@ class Home extends React.Component {
 // This is our select function that will extract from the state the data slice we want to expose
 // through props to our component.
 const mapStateToProps = (state/*, props*/) => {
+  console.log('########')
+  console.log('in mapstate')
+  console.log('########')
   return {
     frozen: state._time.frozen,
     time: state._time.time,
@@ -118,6 +124,10 @@ const mapStateToProps = (state/*, props*/) => {
 }
 
 const ConnectedHome = connect(mapStateToProps)(Home)
+
+console.log('===')
+console.log(ConnectedHome)
+console.log('===')
 
 export default ConnectedHome
 

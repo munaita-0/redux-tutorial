@@ -2,45 +2,45 @@
 
 // We're now starting to get a grasp of what a reducer is...
 
-var reducer_0 = function (state = {}, action) {
-    console.log('reducer_0 was called with state', state, 'and action', action)
-
-    switch (action.type) {
-        case 'SAY_SOMETHING':
-            return {
-                ...state,
-                message: action.value
-            }
-        default:
-            return state;
-    }
-}
-
-// ... but before going further, we should start wondering what our reducer will look like when
-// we'll have tens of actions:
-
-var reducer_1 = function (state = {}, action) {
-    console.log('reducer_1 was called with state', state, 'and action', action)
-
-    switch (action.type) {
-        case 'SAY_SOMETHING':
-            return {
-                ...state,
-                message: action.value
-            }
-        case 'DO_SOMETHING':
-            // ...
-        case 'LEARN_SOMETHING':
-            // ...
-        case 'HEAR_SOMETHING':
-            // ...
-        case 'GO_SOMEWHERE':
-            // ...
-        // etc.
-        default:
-            return state;
-    }
-}
+// var reducer_0 = function (state = {}, action) {
+//     console.log('reducer_0 was called with state', state, 'and action', action)
+//
+//     switch (action.type) {
+//         case 'SAY_SOMETHING':
+//             return {
+//                 ...state,
+//                 message: action.value
+//             }
+//         default:
+//             return state;
+//     }
+// }
+//
+// // ... but before going further, we should start wondering what our reducer will look like when
+// // we'll have tens of actions:
+//
+// var reducer_1 = function (state = {}, action) {
+//     console.log('reducer_1 was called with state', state, 'and action', action)
+//
+//     switch (action.type) {
+//         case 'SAY_SOMETHING':
+//             return {
+//                 ...state,
+//                 message: action.value
+//             }
+//         case 'DO_SOMETHING':
+//             // ...
+//         case 'LEARN_SOMETHING':
+//             // ...
+//         case 'HEAR_SOMETHING':
+//             // ...
+//         case 'GO_SOMEWHERE':
+//             // ...
+//         // etc.
+//         default:
+//             return state;
+//     }
+// }
 
 // It becomes quite evident that a single reducer function cannot hold all our
 // application's actions handling (well it could hold it, but it wouldn't be very maintainable...).

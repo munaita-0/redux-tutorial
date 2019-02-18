@@ -59,11 +59,13 @@
 // Here is what it looks like (with function body translated to es5 for readability):
 
 var thunkMiddleware = function ({ dispatch, getState }) {
-    // console.log('Enter thunkMiddleware');
+    console.log('1. in Middleware');
     return function(next) {
+        console.log('2. in midleware returned next function.')
         // console.log('Function "next" provided:', next);
         return function (action) {
             // console.log('Handling action:', action);
+            console.log('5. in midleware returned action function.', action)
             return typeof action === 'function' ?
                 action(dispatch, getState) :
                 next(action)
@@ -86,21 +88,21 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 const finalCreateStore = applyMiddleware(thunkMiddleware)(createStore)
 // For multiple middlewares, write: applyMiddleware(middleware1, middleware2, ...)(createStore)
 
-var reducer = combineReducers({
-    speaker: function (state = {}, action) {
-        console.log('speaker was called with state', state, 'and action', action)
+  var reducer = function (state = {}, action) {
+    console.log('reducer called with state', state, 'and action', action)
 
-        switch (action.type) {
-            case 'SAY':
-                return {
-                    ...state,
-                    message: action.message
-                }
-            default:
-                return state
-        }
-    }
-})
+      switch (action.type) {
+        case 'SAY':
+          console.log('8. in reducer say process.')
+            return {
+              ...state,
+              message: action.message
+            }
+        default:
+          return state
+      }
+  }
+
 
 const store_0 = finalCreateStore(reducer)
 // Output:
@@ -111,9 +113,11 @@ const store_0 = finalCreateStore(reducer)
 // Now that we have our middleware-ready store instance, let's try again to dispatch our async action:
 
 var asyncSayActionCreator_1 = function (message) {
+  console.log('4. in action creator. functional action returning...')
     return function (dispatch) {
+        console.log('6. functional action called.')
         setTimeout(function () {
-            console.log(new Date(), 'Dispatch action now:')
+            console.log('7. dispatch action.', new Date())
             dispatch({
                 type: 'SAY',
                 message
@@ -122,18 +126,21 @@ var asyncSayActionCreator_1 = function (message) {
     }
 }
 
-console.log("\n", new Date(), 'Running our async action creator:', "\n")
+console.log('3. starting...', new Date())
 
 store_0.dispatch(asyncSayActionCreator_1('Hi'))
 // Output:
 //     Mon Aug 03 2015 00:01:20 GMT+0200 (CEST) Running our async action creator:
 //     Mon Aug 03 2015 00:01:22 GMT+0200 (CEST) 'Dispatch action now:'
 //     speaker was called with state {} and action { type: 'SAY', message: 'Hi' }
+console.log(store_0.getState())
 
 // Our action is correctly dispatched 2 seconds after our call the async action creator!
 
 // Just for your curiosity, here is how a middleware to log all actions that are dispatched, would
 // look like:
+
+console.log('===end===')
 
 function logMiddleware ({ dispatch, getState }) {
     return function(next) {

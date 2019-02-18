@@ -53,17 +53,17 @@ console.log('store_0 state after initialization:', store_0.getState())
 
 // To dispatch an action, simply call:
 
-store_0.dispatch({
-    type: 'AN_ACTION'
-})
-// Output:
-// userReducer was called with state {} and action { type: 'AN_ACTION' }
-// itemsReducer was called with state [] and action { type: 'AN_ACTION' }
-
-// Each reducer is effectively called but since none of our reducers care about this action type,
-// the state is left unchanged:
-
-console.log('store_0 state after action AN_ACTION:', store_0.getState())
+// store_0.dispatch({
+//     type: 'AN_ACTION'
+// })
+// // Output:
+// // userReducer was called with state {} and action { type: 'AN_ACTION' }
+// // itemsReducer was called with state [] and action { type: 'AN_ACTION' }
+//
+// // Each reducer is effectively called but since none of our reducers care about this action type,
+// // the state is left unchanged:
+//
+// console.log('store_0 state after action AN_ACTION:', store_0.getState())
 // Output: store_0 state after action AN_ACTION: { user: {}, items: [] }
 
 // But, wait a minute! Aren't we supposed to use an action creator to send an action? We could indeed
@@ -82,7 +82,7 @@ store_0.dispatch(setNameActionCreator('bob'))
 // Output:
 // userReducer was called with state {} and action { type: 'SET_NAME', name: 'bob' }
 // itemsReducer was called with state [] and action { type: 'SET_NAME', name: 'bob' }
-
+//
 console.log('store_0 state after action SET_NAME:', store_0.getState())
 // Output:
 // store_0 state after action SET_NAME: { user: { name: 'bob' }, items: [] }

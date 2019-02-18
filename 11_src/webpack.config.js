@@ -7,8 +7,8 @@ module.exports = function (webpackDevPort) {
   return {
     devtool: 'eval',
     entry: [
-      'webpack-dev-server/client?http://' + webpackDevHost + ':' + webpackDevPort,
-      'webpack/hot/only-dev-server',
+      // 'webpack-dev-server/client?http://' + webpackDevHost + ':' + webpackDevPort,
+      // 'webpack/hot/only-dev-server',
       './11_src/src/index'
     ],
     output: {
